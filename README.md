@@ -57,9 +57,9 @@ If the length is the issue we can do what GitHub does with commit hashes in thei
 
 Use *only* the ***first 6 characters*** of the hash:
 ```js
-var hash = require('crypto').createHash('sha1');
-hash.update("/my-amazing-blog-post");
-console.log(hash.digest('base64').substring(0, 6)); // Exhijl
+var hash = require('crypto').createHash('sha512');
+hash.update("/my-amazing-blog-post").digest('base64');
+console.log(hash.substring(0, 6)); // Exhijl
 ```
 
 Getting the [**base64**](http://en.wikipedia.org/wiki/Base64) "digest"
@@ -120,10 +120,15 @@ var tinyurl = perma(longurl, length);
 console.log(tinyurl); // bCvQYQafswBmQzTWTak
 ```
 
+## Practical Usage
 
 Given that there are
-[57 <sup>5</sup>](http://www.wolframalpha.com/input/?i=57+to+the+power+of+3)
- = 185,193 **185k** possible urls we can easily
+[57 <sup>3</sup>](http://www.wolframalpha.com/input/?i=57+to+the+power+of+3)
+ = 185,193 **185k** *possible* urls we can *easily* use **perma**
+ as the basis for most websites, blogs or basic apps.
+
+ + [ ] Create practical http server example
+
 
 [npm-image]: https://img.shields.io/npm/v/perma.svg?style=flat
 [npm-url]: https://npmjs.org/package/perma
