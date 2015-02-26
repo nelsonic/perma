@@ -22,26 +22,7 @@ test("Confirm string characters are in Allowed chars", function(t) {
 });
 
 test("Full Length Hash", function(t) {
-  var hash = perma("RandomGobbledygook", "full");
+  var hash = perma("RandomGobbledygook", 50);
   t.true(hash.length > 20, "Full Length is "+hash);
   t.end();
 });
-
-test("Performance Test", function(t) {
-  var st = new Date().getTime(); // start time
-  var str;
-  var n  = 1000000;
-  for(var i = 0; i < n; i++){
-    var length = Math.floor(Math.random() * 27) + 1
-    str = perma(i, length);
-  }
-  var et = new Date().getTime(); // end time
-  var took = et - st;            // elapsed time
-  console.log("Generated " + n + " (one million) permalinks in " + took + " ms");
-  t.true(took < 20000, " >> Performance: " + Math.floor(n/took*1000) + "/sec");
-  t.end(); // should not fail just because Travis-CI instance is low-powered!
-});
-
-var longurl = '/my-awesome-post-about-unicorns';
-var tinyurl = perma(longurl, "full");
-console.log(">> "+tinyurl + ' | '+tinyurl.length); // 89CkC
